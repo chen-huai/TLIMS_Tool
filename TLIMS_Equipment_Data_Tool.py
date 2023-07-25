@@ -14,6 +14,7 @@ from TLIMS_Equipment_Data_Tool import *
 from TLIMS_Equipment_Data_Tool_UI import *
 from Table_Ui import *
 
+
 class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyMainWindow, self).__init__(parent)
@@ -94,8 +95,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         configContent = [
             ['config_num', '4', 'config文件条目数量,不能更改数值'],  # getConfigContent()中需要更改配置文件数量
             ['输入路径和输出路径', '默认，可更改为自己需要的', '备注'],
-            ['Import_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\May', '输入路径'],
-            ['Export_URL', '%s' % desktopUrl, '输出路径'],
+            ['Import_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\%s' % monthAbbrev, '输入路径'],
+            ['Export_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\result', '输出路径'],
         ]
         config = np.array(configContent)
         df = pd.DataFrame(config)
@@ -139,6 +140,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
     def test(self):
         return 'test'
+
 
 class MyTableWindow(QMainWindow, Ui_TableWindow):
     def __init__(self, parent=None):
