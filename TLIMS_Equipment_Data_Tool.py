@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import shutil
 import random
 import pandas as pd
 import numpy as np
@@ -20,7 +21,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         super(MyMainWindow, self).__init__(parent)
         self.setupUi(self)
 
-        # self.pushButton_23.clicked.connect(self.aasBatch)
+        self.pushButton.clicked.connect(self.getFromPath)
+        self.pushButton_2.clicked.connect(self.getToPath)
+        self.pushButton_3.clicked.connect(self.filesOpration)
         # self.pushButton_39.clicked.connect(self.tabWidget.close)
         # self.pushButton_15.clicked.connect(self.clearContent)
         # self.pushButton_18.clicked.connect(lambda: self.getBatch('Auto'))
@@ -28,7 +31,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         self.actionImport.triggered.connect(self.importConfig)
         self.actionExit.triggered.connect(MyMainWindow.close)
         self.actionEdit.triggered.connect(self.showTable)
-        self.actionImport.triggered.connect(self.lineEdit.clear)
         self.actionHelp.triggered.connect(self.showVersion)
         self.actionAuthor.triggered.connect(self.showAuthorMessage)
 
@@ -71,7 +73,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         use = list(csvFile['C'])
         for i in range(len(content)):
             configContent['%s' % content[i]] = rul[i]
-        a = len(configContent)
+        myWin.toGuiData()
         if (int(configContent['config_num']) != len(configContent)) or (len(configContent) != 4):
             reply = QMessageBox.question(self, '信息', 'config文件配置缺少一些参数，是否重新创建并获取新的config文件',
                                          QMessageBox.Yes | QMessageBox.No,
@@ -96,7 +98,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             ['config_num', '4', 'config文件条目数量,不能更改数值'],  # getConfigContent()中需要更改配置文件数量
             ['输入路径和输出路径', '默认，可更改为自己需要的', '备注'],
             ['Import_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\%s' % monthAbbrev, '输入路径'],
-            ['Export_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\result', '输出路径'],
+            ['Export_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\result', '输出路径,软件会在改文件夹创建对应日期文件夹'],
         ]
         config = np.array(configContent)
         df = pd.DataFrame(config)
@@ -138,8 +140,67 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         myTable.createTable()
         myTable.showMaximized()
 
-    def test(self):
-        return 'test'
+    def toGuiData(self):
+        # 初始化界面数据
+        self.lineEdit.setText(configContent['Import_URL'])
+        app.processEvents()
+        self.lineEdit_2.setText(configContent['Export_URL'])
+        app.processEvents()
+
+    def getGuiData(self):
+        # 获取界面数据
+        guiData = {
+            'Import_URL': self.lineEdit.text(),
+            'Export_URL': self.lineEdit_2.text(),
+        }
+        return guiData
+
+    def getFolderPath(self, path):
+        # 获取文件夹路径
+        selectFolderPath = QFileDialog.getExistingDirectory(self, '请选择文件夹路径', '%s' % (path))
+        return selectFolderPath.replace('/', '\\')
+
+    def getFromPath(self):
+        # 获取输入路径
+        importPath = myWin.getFolderPath(configContent['Import_URL'])
+        self.lineEdit.setText(importPath)
+
+    def getToPath(self):
+        # 获取输入路径
+        importPath = myWin.getFolderPath(configContent['Export_URL'])
+        self.lineEdit.setText(importPath)
+
+    def createFolder(self, url):
+        isExists = os.path.exists(url)
+        if not isExists:
+            os.makedirs(url)
+
+    def filesOpration(self):
+        # 遍历文件夹中的文件夹，并获取里面文件，按要求复制文件
+        guiData = myWin.getGuiData()
+        paths = os.walk(guiData['Import_URL'], topdown=True)
+        exportPath = guiData['Export_URL'] + '\\' + today
+        myWin.createFolder(exportPath)
+        for root, dirs, files in paths:
+            # print(dirs,files)
+            for dir in dirs:
+                if '.D' not in dir:
+                    continue
+                else:
+                    # 由于知道所需文件名称，可直接操作
+                    files = ['Report.TXT', 'R-NPEO.TXT', 'R-OPEO.TXT']
+                    self.textBrowser.append('文件夹：%s' % (dir))
+                    num = 1
+                    for file in files:
+                        oldPath = os.path.join(guiData['Import_URL'], dir, file)
+                        newName = today + '_' + dir + '_' + file
+                        newPath = os.path.join(exportPath, newName)
+                        shutil.copyfile(oldPath, newPath)
+                        self.textBrowser.append('第%s份文件：%s' % (num, newPath))
+                        app.processEvents()
+                        num += 1
+                    self.textBrowser.append('-----------------')
+        self.textBrowser.append('完成')
 
 
 class MyTableWindow(QMainWindow, Ui_TableWindow):
