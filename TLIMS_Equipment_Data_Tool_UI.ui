@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>559</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>操作界面</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/ch.ico</normaloff>:/ch.ico</iconset>
+  </property>
+  <property name="statusTip">
+   <string>作者：Frank Chen</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Operation</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>From</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>To</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+       <item row="0" column="2" rowspan="2">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Run</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Messages</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QTextBrowser" name="textBrowser"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>559</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionEdit"/>
+    <addaction name="actionExport"/>
+    <addaction name="actionImport"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionAuthor"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset>
+     <normaloff>icon/export.png</normaloff>
+     <normalon>:/export.png</normalon>
+     <disabledoff>:/export.png</disabledoff>
+     <disabledon>:/export.png</disabledon>
+     <activeoff>:/export.png</activeoff>
+     <activeon>:/export.png</activeon>
+     <selectedoff>:/export.png</selectedoff>
+     <selectedon>:/export.png</selectedon>icon/export.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+   <property name="toolTip">
+    <string>Export</string>
+   </property>
+   <property name="statusTip">
+    <string>导出默认配置信息，可在用户桌面config文件夹中查看</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>icon/exit.png</normaloff>
+     <normalon>:/exit.png</normalon>
+     <disabledoff>:/exit.png</disabledoff>
+     <disabledon>:/exit.png</disabledon>
+     <activeoff>:/exit.png</activeoff>
+     <activeon>:/exit.png</activeon>
+     <selectedoff>:/exit.png</selectedoff>
+     <selectedon>:/exit.png</selectedon>icon/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>退出程序</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="icon">
+    <iconset>
+     <normaloff>icon/import.png</normaloff>
+     <normalon>:/import.png</normalon>
+     <disabledoff>:/import.png</disabledoff>
+     <disabledon>:/import.png</disabledon>
+     <activeoff>:/import.png</activeoff>
+     <activeon>:/import.png</activeon>
+     <selectedoff>:/import.png</selectedoff>
+     <selectedon>:/import.png</selectedon>icon/import.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import</string>
+   </property>
+   <property name="statusTip">
+    <string>导入配置文件，当配置文件修改时请使用，配置文件可在用户桌面config文件夹中找到</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset>
+     <normaloff>icon/help.png</normaloff>
+     <normalon>:/help.png</normalon>
+     <disabledoff>:/help.png</disabledoff>
+     <disabledon>:/help.png</disabledon>
+     <activeoff>:/help.png</activeoff>
+     <activeon>:/help.png</activeon>
+     <selectedoff>:/help.png</selectedoff>
+     <selectedon>:/help.png</selectedon>icon/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="statusTip">
+    <string>帮助提示</string>
+   </property>
+  </action>
+  <action name="actionAuthor">
+   <property name="icon">
+    <iconset>
+     <normaloff>icon/author.png</normaloff>
+     <normalon>icon/author.png</normalon>
+     <disabledoff>icon/author.png</disabledoff>
+     <disabledon>icon/author.png</disabledon>
+     <activeoff>icon/author.png</activeoff>
+     <activeon>icon/author.png</activeon>
+     <selectedoff>icon/author.png</selectedoff>
+     <selectedon>icon/author.png</selectedon>icon/author.png</iconset>
+   </property>
+   <property name="text">
+    <string>Author</string>
+   </property>
+   <property name="statusTip">
+    <string>关于作者</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
