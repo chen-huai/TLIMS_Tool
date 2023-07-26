@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>559</width>
-    <height>500</height>
+    <width>984</width>
+    <height>735</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,6 +36,9 @@
        <item row="0" column="1">
         <widget class="QLineEdit" name="lineEdit"/>
        </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="pushButton">
          <property name="text">
@@ -50,10 +53,17 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_2"/>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>Files Name</string>
+         </property>
+        </widget>
        </item>
-       <item row="0" column="2" rowspan="2">
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+       <item row="0" column="2" rowspan="3">
         <widget class="QPushButton" name="pushButton_3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
@@ -96,7 +106,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>559</width>
+     <width>984</width>
      <height>23</height>
     </rect>
    </property>
@@ -126,14 +136,14 @@
   <action name="actionExport">
    <property name="icon">
     <iconset>
-     <normaloff>icon/export.png</normaloff>
+     <normaloff>../../../Users/chen-fr/.designer/backup/icon/export.png</normaloff>
      <normalon>:/export.png</normalon>
      <disabledoff>:/export.png</disabledoff>
      <disabledon>:/export.png</disabledon>
      <activeoff>:/export.png</activeoff>
      <activeon>:/export.png</activeon>
      <selectedoff>:/export.png</selectedoff>
-     <selectedon>:/export.png</selectedon>icon/export.png</iconset>
+     <selectedon>:/export.png</selectedon>../../../Users/chen-fr/.designer/backup/icon/export.png</iconset>
    </property>
    <property name="text">
     <string>Export</string>
@@ -156,14 +166,14 @@
   <action name="actionExit">
    <property name="icon">
     <iconset>
-     <normaloff>icon/exit.png</normaloff>
+     <normaloff>../../../Users/chen-fr/.designer/backup/icon/exit.png</normaloff>
      <normalon>:/exit.png</normalon>
      <disabledoff>:/exit.png</disabledoff>
      <disabledon>:/exit.png</disabledon>
      <activeoff>:/exit.png</activeoff>
      <activeon>:/exit.png</activeon>
      <selectedoff>:/exit.png</selectedoff>
-     <selectedon>:/exit.png</selectedon>icon/exit.png</iconset>
+     <selectedon>:/exit.png</selectedon>../../../Users/chen-fr/.designer/backup/icon/exit.png</iconset>
    </property>
    <property name="text">
     <string>Exit</string>
@@ -175,14 +185,14 @@
   <action name="actionImport">
    <property name="icon">
     <iconset>
-     <normaloff>icon/import.png</normaloff>
+     <normaloff>../../../Users/chen-fr/.designer/backup/icon/import.png</normaloff>
      <normalon>:/import.png</normalon>
      <disabledoff>:/import.png</disabledoff>
      <disabledon>:/import.png</disabledon>
      <activeoff>:/import.png</activeoff>
      <activeon>:/import.png</activeon>
      <selectedoff>:/import.png</selectedoff>
-     <selectedon>:/import.png</selectedon>icon/import.png</iconset>
+     <selectedon>:/import.png</selectedon>../../../Users/chen-fr/.designer/backup/icon/import.png</iconset>
    </property>
    <property name="text">
     <string>Import</string>
@@ -202,14 +212,14 @@
   <action name="actionHelp">
    <property name="icon">
     <iconset>
-     <normaloff>icon/help.png</normaloff>
+     <normaloff>../../../Users/chen-fr/.designer/backup/icon/help.png</normaloff>
      <normalon>:/help.png</normalon>
      <disabledoff>:/help.png</disabledoff>
      <disabledon>:/help.png</disabledon>
      <activeoff>:/help.png</activeoff>
      <activeon>:/help.png</activeon>
      <selectedoff>:/help.png</selectedoff>
-     <selectedon>:/help.png</selectedon>icon/help.png</iconset>
+     <selectedon>:/help.png</selectedon>../../../Users/chen-fr/.designer/backup/icon/help.png</iconset>
    </property>
    <property name="text">
     <string>Help</string>
@@ -221,14 +231,14 @@
   <action name="actionAuthor">
    <property name="icon">
     <iconset>
-     <normaloff>icon/author.png</normaloff>
-     <normalon>icon/author.png</normalon>
-     <disabledoff>icon/author.png</disabledoff>
-     <disabledon>icon/author.png</disabledon>
-     <activeoff>icon/author.png</activeoff>
-     <activeon>icon/author.png</activeon>
-     <selectedoff>icon/author.png</selectedoff>
-     <selectedon>icon/author.png</selectedon>icon/author.png</iconset>
+     <normaloff>../../../Users/chen-fr/.designer/backup/icon/author.png</normaloff>
+     <normalon>../../../Users/chen-fr/.designer/backup/icon/author.png</normalon>
+     <disabledoff>../../../Users/chen-fr/.designer/backup/icon/author.png</disabledoff>
+     <disabledon>../../../Users/chen-fr/.designer/backup/icon/author.png</disabledon>
+     <activeoff>../../../Users/chen-fr/.designer/backup/icon/author.png</activeoff>
+     <activeon>../../../Users/chen-fr/.designer/backup/icon/author.png</activeon>
+     <selectedoff>../../../Users/chen-fr/.designer/backup/icon/author.png</selectedoff>
+     <selectedon>../../../Users/chen-fr/.designer/backup/icon/author.png</selectedon>../../../Users/chen-fr/.designer/backup/icon/author.png</iconset>
    </property>
    <property name="text">
     <string>Author</string>

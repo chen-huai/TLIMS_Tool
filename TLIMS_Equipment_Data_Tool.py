@@ -73,14 +73,16 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         use = list(csvFile['C'])
         for i in range(len(content)):
             configContent['%s' % content[i]] = rul[i]
-        myWin.toGuiData()
-        if (int(configContent['config_num']) != len(configContent)) or (len(configContent) != 4):
+
+        if (int(configContent['config_num']) != len(configContent)) or (len(configContent) != 5):
             reply = QMessageBox.question(self, '信息', 'config文件配置缺少一些参数，是否重新创建并获取新的config文件',
                                          QMessageBox.Yes | QMessageBox.No,
                                          QMessageBox.Yes)
             if reply == QMessageBox.Yes:
                 MyMainWindow.createConfigContent(self)
                 MyMainWindow.getConfigContent(self)
+        else:
+            myWin.toGuiData()
         try:
             self.textBrowser.append("配置获取成功")
         except AttributeError:
@@ -95,10 +97,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         monthAbbrev = months[pos:pos + 3]
 
         configContent = [
-            ['config_num', '4', 'config文件条目数量,不能更改数值'],  # getConfigContent()中需要更改配置文件数量
+            ['config_num', '5', 'config文件条目数量,不能更改数值'],  # getConfigContent()中需要更改配置文件数量
             ['输入路径和输出路径', '默认，可更改为自己需要的', '备注'],
             ['Import_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\%s' % monthAbbrev, '输入路径'],
             ['Export_URL', 'Z:\\Data\\2023\\66-01-2013-009 HPLC-MS\\AP&APEO\\result', '输出路径,软件会在改文件夹创建对应日期文件夹'],
+            ['Files_Name', 'Report.TXT;R-NPEO.TXT;R-OPEO.TXT', '输出路径,软件会在改文件夹创建对应日期文件夹'],
         ]
         config = np.array(configContent)
         df = pd.DataFrame(config)
@@ -143,8 +146,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     def toGuiData(self):
         # 初始化界面数据
         self.lineEdit.setText(configContent['Import_URL'])
-        app.processEvents()
         self.lineEdit_2.setText(configContent['Export_URL'])
+        self.lineEdit_3.setText(configContent['Files_Name'])
         app.processEvents()
 
     def getGuiData(self):
@@ -152,6 +155,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         guiData = {
             'Import_URL': self.lineEdit.text(),
             'Export_URL': self.lineEdit_2.text(),
+            'Files_Name': self.lineEdit_3.text(),
         }
         return guiData
 
@@ -168,7 +172,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     def getToPath(self):
         # 获取输入路径
         importPath = myWin.getFolderPath(configContent['Export_URL'])
-        self.lineEdit.setText(importPath)
+        self.lineEdit_2.setText(importPath)
 
     def createFolder(self, url):
         isExists = os.path.exists(url)
@@ -188,15 +192,18 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                     continue
                 else:
                     # 由于知道所需文件名称，可直接操作
-                    files = ['Report.TXT', 'R-NPEO.TXT', 'R-OPEO.TXT']
+                    files = guiData['Files_Name'].split(';')
                     self.textBrowser.append('文件夹：%s' % (dir))
                     num = 1
                     for file in files:
                         oldPath = os.path.join(guiData['Import_URL'], dir, file)
                         newName = today + '_' + dir + '_' + file
                         newPath = os.path.join(exportPath, newName)
-                        shutil.copyfile(oldPath, newPath)
                         self.textBrowser.append('第%s份文件：%s' % (num, newPath))
+                        try:
+                            shutil.copyfile(oldPath, newPath)
+                        except:
+                            self.textBrowser.append("<font color='red'>原始文件无%s文件</font>" % file)
                         app.processEvents()
                         num += 1
                     self.textBrowser.append('-----------------')
