@@ -184,13 +184,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             # isExists = os.path.exists(url_2)
 
         os.makedirs(url_2)
+        return url_2
 
     def filesOpration(self):
         # 遍历文件夹中的文件夹，并获取里面文件，按要求复制文件
         guiData = myWin.getGuiData()
         paths = os.walk(guiData['Import_URL'], topdown=True)
         exportPath = guiData['Export_URL'] + '\\' + today
-        myWin.createFolder(exportPath)
+        url = myWin.createFolder(exportPath)
         for root, dirs, files in paths:
             # print(dirs,files)
             for dir in dirs:
@@ -213,6 +214,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                         app.processEvents()
                         num += 1
                     self.textBrowser.append('-----------------')
+
+        self.textBrowser.append('数据来源位置：%s' % guiData['Import_URL'])
+        self.textBrowser.append('导出文件夹位置：%s' % url)
         self.textBrowser.append('完成')
 
 
