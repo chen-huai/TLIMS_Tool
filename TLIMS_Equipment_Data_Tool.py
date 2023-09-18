@@ -175,9 +175,15 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         self.lineEdit_2.setText(importPath)
 
     def createFolder(self, url):
-        isExists = os.path.exists(url)
-        if not isExists:
-            os.makedirs(url)
+        i = 1
+        url_2 = url + '-' + str(i)
+        # isExists = os.path.exists(url_2)
+        while os.path.exists(url_2):
+            i += 1
+            url_2 = url + '-' + str(i)
+            # isExists = os.path.exists(url_2)
+
+        os.makedirs(url_2)
 
     def filesOpration(self):
         # 遍历文件夹中的文件夹，并获取里面文件，按要求复制文件
