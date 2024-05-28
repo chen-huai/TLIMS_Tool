@@ -204,12 +204,15 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                     num = 1
                     for file in files:
                         oldPath = os.path.join(guiData['Import_URL'], dir, file)
-                        newName = today + '_' + dir + '_' + file
-                        newPath = os.path.join(exportPath, newName)
-                        self.textBrowser.append('第%s份文件：%s' % (num, newPath))
-                        try:
-                            shutil.copyfile(oldPath, newPath)
-                        except:
+                        if os.path.isfile(oldPath):
+                            newName = today + '_' + dir + '_' + file
+                            newPath = os.path.join(url, newName)
+                            self.textBrowser.append('第%s份文件：%s' % (num, newPath))
+                            try:
+                                shutil.copyfile(oldPath, newPath)
+                            except:
+                                self.textBrowser.append("<font color='red'>原始文件%s复制未成功</font>" % file)
+                        else:
                             self.textBrowser.append("<font color='red'>原始文件无%s文件</font>" % file)
                         app.processEvents()
                         num += 1
@@ -285,13 +288,13 @@ class EmptyDelegate(QItemDelegate):
 
 
 if __name__ == "__main__":
-    import sys
-    import os
-    import time
-    import random
-    import pandas as pd
-    import numpy as np
-    import re
+    # import sys
+    # import os
+    # import time
+    # import random
+    # import pandas as pd
+    # import numpy as np
+    # import re
 
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
